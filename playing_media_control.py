@@ -53,12 +53,34 @@ async def shuffle_current_media(enable:bool):
         return        
     raise Exception('現在再生中のプロセスが存在しません')
 
+# 次のトラックを再生
+async def skip_next_current_media():
+    sessions = await MediaManager.request_async()
+    current_session = sessions.get_current_session()
+
+    if current_session:
+        current_session.try_skip_next_async()
+        return        
+    raise Exception('現在再生中のプロセスが存在しません')
+
+# 前のトラックを再生
+async def skip_previous_current_media():
+    sessions = await MediaManager.request_async()
+    current_session = sessions.get_current_session()
+
+    if current_session:
+        current_session.try_skip_previous_async()
+        return        
+    raise Exception('現在再生中のプロセスが存在しません')
 
 if __name__ == '__main__':
     current_media_info = asyncio.run(get_all_media_info())
     print(current_media_info)
 
     # asyncio.run(pause_current_media())
-    asyncio.run(play_current_media())
+    # asyncio.run(play_current_media())
     # asyncio.run(stop_current_media())
-    asyncio.run(shuffle_current_media(True))
+    # asyncio.run(shuffle_current_media(True))
+    # asyncio.run(shuffle_current_media(False))
+    # asyncio.run(skip_next_current_media())
+    # asyncio.run(skip_previous_current_media())
