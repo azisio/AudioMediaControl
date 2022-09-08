@@ -1,0 +1,4 @@
+keyboard==0.13.5
+PyAudio==0.2.12
+SpeechRecognition==3.8.1
+winrt==1.0.21033.1
